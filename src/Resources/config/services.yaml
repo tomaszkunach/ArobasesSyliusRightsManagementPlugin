@@ -1,0 +1,65 @@
+services:
+
+
+
+#  Arobases\SyliusRightsManagementPlugin\:
+#    resource: '../../*'
+#    exclude: '../../{Entity,Migrations,Tests,Kernel.php}'
+
+  arobases.rights_management.form.type.admin.role:
+    class: Arobases\SyliusRightsManagementPlugin\Form\Type\Admin\RoleType
+
+    arguments:
+      - '@arobases_sylius_rights_management_plugin.repository.right'
+    tags:
+      - { name: form.type}
+  arobases.rights_management.form.type.admin.right_choice:
+    class: Arobases\SyliusRightsManagementPlugin\Form\Type\Admin\RightChoiceType
+
+    arguments:
+      - '@arobases_sylius_rights_management_plugin.repository.right'
+    tags:
+      - { name: form.type}
+
+
+  arobases.rights_management.form.type.admin.role_choice:
+    class: Arobases\SyliusRightsManagementPlugin\Form\Type\Admin\RoleChoiceType
+
+    arguments:
+      - '@arobases_sylius_rights_management_plugin.repository.role'
+    tags:
+      - { name: form.type}
+
+  arobases.rights_management.form.admin_user:
+    class: Arobases\SyliusRightsManagementPlugin\Form\Extension\AdminUserTypeExtension
+    tags:
+      - { name: form.type_extension, extended_type: Sylius\Bundle\CoreBundle\Form\Type\User\AdminUserType }
+
+
+  arobases.rights_management.twig_extension.format_right_array:
+    class: Arobases\SyliusRightsManagementPlugin\Twig\Extensions\FormatRightArrayExtension
+    public: false
+    tags:
+        - { name: twig.extension }
+
+
+  arobases.rights_management.checker.admin_route_checker:
+    class: Arobases\SyliusRightsManagementPlugin\Access\Checker\AdminRouteChecker
+
+  arobases.rights_management.checker.admin_user_access_checker:
+    class: Arobases\SyliusRightsManagementPlugin\Access\Checker\AdminUserAccessChecker
+
+  arobases.rights_management.adapter.right_adapter:
+    class: Arobases\SyliusRightsManagementPlugin\Adapter\RightAdapter
+    arguments:
+      - '@service_container'
+
+  arobases_rights_management.command.create_admin_right:
+    class: Arobases\SyliusRightsManagementPlugin\Command\CreateAdminRightCommand
+    arguments:
+      - '@doctrine.orm.entity_manager'
+      - '@arobases.rights_management.adapter.right_adapter'
+      - '@arobases_sylius_rights_management_plugin.repository.right_group'
+      - '@arobases_sylius_rights_management_plugin.repository.right'
+    tags:
+      - { name: console.command }

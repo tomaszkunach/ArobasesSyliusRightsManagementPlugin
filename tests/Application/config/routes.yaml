@@ -1,0 +1,9 @@
+arobases_sylius_rights_management_shop:
+    resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/shop_routing.yml"
+    prefix: /{_locale}
+    requirements:
+        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
+
+arobases_sylius_rights_management_admin:
+    resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/admin_routing.yml"
+    prefix: /admin

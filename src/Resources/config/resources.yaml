@@ -1,0 +1,28 @@
+sylius_resource:
+  resources:
+    arobases_sylius_rights_management_plugin.right:
+      driver: doctrine/orm
+      classes:
+        model: Arobases\SyliusRightsManagementPlugin\Entity\Right
+#        form: Arobases\SyliusCustomerSupportPlugin\Form\Admin\CustomerSupportType
+        repository: Arobases\SyliusRightsManagementPlugin\Repository\Right\RightRepository
+      templates: '@SyliusAdmin/Crud'
+
+    arobases_sylius_rights_management_plugin.role:
+      driver: doctrine/orm
+      classes:
+        model: Arobases\SyliusRightsManagementPlugin\Entity\Role
+        form: Arobases\SyliusRightsManagementPlugin\Form\Type\Admin\RoleType
+        repository: Arobases\SyliusRightsManagementPlugin\Repository\Role\RoleRepository
+      templates: '@SyliusAdmin/Crud'
+
+    arobases_sylius_rights_management_plugin.right_group:
+      driver: doctrine/orm
+      classes:
+        model: Arobases\SyliusRightsManagementPlugin\Entity\RightGroup
+        repository: Arobases\SyliusRightsManagementPlugin\Repository\Group\RightGroupRepository
+
+
+imports:
+  - { resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/grids.yaml" }
+  - { resource: '@ArobasesSyliusRightsManagementPlugin/Resources/config/right_management.yaml'}

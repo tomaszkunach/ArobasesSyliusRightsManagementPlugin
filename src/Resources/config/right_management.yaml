@@ -1,0 +1,17 @@
+arobases_sylius_rights_management:
+  rights:
+    taxon:
+      name: 'arobases_rights_management.rights.taxon.all'
+      routes: ['sylius_admin_taxon_*']
+      redirect_to: sylius_admin_dashboard
+
+    product:
+      name: 'arobases_rights_management.rights.product.all'
+      routes: ['sylius_admin_product_*']
+      excludes: ['sylius_admin_product_review_*']
+      redirect_to: sylius_admin_dashboard
+
+    inventory:
+      name: 'arobases_rights_management.rights.inventory.all'
+      routes: ['sylius_admin_inventory_*']
+      redirect_to: sylius_admin_dashboard

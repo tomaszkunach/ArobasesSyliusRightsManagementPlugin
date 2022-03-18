@@ -1,0 +1,25 @@
+sylius_grid:
+  grids:
+    arobases_sylius_rights_management_plugin_role:
+      driver:
+        name: doctrine/orm
+        options:
+          class: '%arobases_sylius_rights_management_plugin.model.role.class%'
+      sorting:
+#        date_updated_at: desc
+      fields:
+        name:
+          type: string
+          label: sylius.ui.name
+
+      filters:
+
+      actions:
+        item:
+          update:
+            type: update
+          delete:
+            type: delete
+        main:
+          create:
+            type: create
