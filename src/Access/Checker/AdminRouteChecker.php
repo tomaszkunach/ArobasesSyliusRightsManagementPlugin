@@ -8,9 +8,10 @@ namespace Arobases\SyliusRightsManagementPlugin\Access\Checker;
 class AdminRouteChecker
 {
 
-    public function isAdminRoute(string $routeName, string $routeSection): bool
+//    public function isAdminRoute(string $routeName, string $routeSection): bool
+    public function isAdminRoute(string $routeName): bool
     {
-        if( strpos($routeName, 'admin') !== false && strpos($routeSection, 'admin') !== false ){
+        if( strpos($routeName, 'admin') !== false ){
             return true;
         }
         return false;

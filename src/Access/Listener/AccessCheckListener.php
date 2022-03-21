@@ -9,7 +9,10 @@ use Arobases\SyliusRightsManagementPlugin\Access\Checker\AdminRouteChecker;
 use Arobases\SyliusRightsManagementPlugin\Access\Checker\AdminUserAccessChecker;
 use Sylius\Component\Core\Model\AdminUserInterface;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -19,18 +22,24 @@ class AccessCheckListener
     private TokenStorageInterface $tokenStorage;
     private AdminUserAccessChecker $adminUserAccessChecker;
     private AdminRouteChecker $adminRouteAccessChecker;
+    private Session $session;
+    private RouterInterface $routeur;
 
     /**
      * AccessCheckListener constructor.
      * @param TokenStorageInterface $tokenStorage
      * @param AdminUserAccessChecker $adminUserAccessChecker
      * @param AdminRouteChecker $adminRouteAccessChecker
+     * @param Session $session
+     * @param RouterInterface $routeur
      */
-    public function __construct(TokenStorageInterface $tokenStorage, AdminUserAccessChecker $adminUserAccessChecker, AdminRouteChecker $adminRouteAccessChecker)
+    public function __construct(TokenStorageInterface $tokenStorage, AdminUserAccessChecker $adminUserAccessChecker, AdminRouteChecker $adminRouteAccessChecker, Session $session, RouterInterface $routeur)
     {
         $this->tokenStorage = $tokenStorage;
         $this->adminUserAccessChecker = $adminUserAccessChecker;
         $this->adminRouteAccessChecker = $adminRouteAccessChecker;
+        $this->session = $session;
+        $this->routeur = $routeur;
     }
 
 
@@ -38,42 +47,51 @@ class AccessCheckListener
     {
 
         $routeName = $event->getRequest()->get('_route');
-        if(strpos($routeName, 'partial')){
+        if(null ===$routeName)
+        {
+            return;
+        }
+
+
+
+        if(strpos($routeName, 'partial') || $routeName === 'sylius_admin_dashboard') {
             return ;
         }
 
-//        dump( $event->getRequest());
-//        dump($routeName);
-
+////        dump( $event->getRequest());
+////        dump($routeName);
+//
 
         if(null === $routeName ){
             return ;
         }
-        $routeSection = $event->getRequest()->attributes->get('_sylius')['section'];
-
-        if(!$this->adminRouteAccessChecker->isAdminRoute($routeName, $routeSection)) {
+//
+////        $routeSection = $event->getRequest()->attributes->get('_sylius')['section'];
+//
+////        dump($routeSection);
+//        if(!$this->adminRouteAccessChecker->isAdminRoute($routeName, $routeSection)) {
+//            return ;
+//        }
+        if(!$this->adminRouteAccessChecker->isAdminRoute($routeName)) {
             return ;
         }
-
+//
         $adminUser = $this->getCurrentAdminUser();
+
         if ($adminUser instanceof AdminUserInterface && $adminUser->getRole())
         {
-            $this->adminUserAccessChecker->isUserGranted($adminUser, $routeName);
+            $isUserGranted = $this->adminUserAccessChecker->isUserGranted($adminUser, $routeName);
+
+            if(!$isUserGranted){
+
+                $event->setResponse( $this->redirectUser($this->getRedirectRoute(), $this->getRedirectMessage()));
+
+            }
+
         }
-//        try {
-//            dump("cc");
-//            exit;
-////            $accessRequest = $this->createAccessRequestFromEvent($event);
-//        } catch (InsecureRequestException $exception) {
-//            return;
-//        }
-//
-//        if ($this->administratorAccessChecker->canAccessSection($this->getCurrentAdmin(), $accessRequest)) {
-//            return;
-//        }
-//
-//        $this->addAccessErrorFlash($event->getRequest()->getMethod());
-//        $event->setResponse($this->getRedirectResponse($event->getRequest()->headers->get('referer')));
+
+
+
     }
 
 
@@ -90,5 +108,27 @@ class AccessCheckListener
         return $this->tokenStorage->getToken()->getUser();
 
     }
+
+
+    private function getRedirectRoute(): string
+    {
+
+        return  $this->routeur->generate('sylius_admin_dashboard');
+    }
+
+    private  function getRedirectMessage(): string
+    {
+       return  'arobases_sylius_rights_management.message.access_denied';
+
+    }
+
+    protected function redirectUser(string $route, string $message): RedirectResponse
+    {
+        $this->session->getFlashBag()->add('error', $message);
+
+        return new RedirectResponse($route);
+    }
+
+
 }
 

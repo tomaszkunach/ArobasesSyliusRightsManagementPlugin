@@ -5,16 +5,97 @@ declare(strict_types=1);
 namespace Arobases\SyliusRightsManagementPlugin\Access\Checker;
 
 
+use Arobases\SyliusRightsManagementPlugin\Entity\Right;
 use Sylius\Component\User\Model\UserInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 class AdminUserAccessChecker
 {
+    private RouterInterface $router;
+    private array $arrayListAllRoutes;
+
+    /**
+     * AdminUserAccessChecker constructor.
+     * @param RouterInterface $router
+     */
+    public function __construct(RouterInterface $router)
+    {
+        $this->router = $router;
+        $this->arrayListAllRoutes = $this->router->getRouteCollection()->all();
+    }
+
+
     public function isUserGranted(UserInterface $adminUser, string $routeName)
     {
 
-        dump(  $adminUser->getRole());
-        dump("cc2");
-//        exit;
+
+        $authorizedRoutes = [];
+
+
+        $rights =  $adminUser->getRole()->getRights();
+        /** @var Right $right */
+        foreach($rights as $right){
+
+            $authorizedRoutes = array_merge($this->getRightAuthorizedRoutes($right),$authorizedRoutes );
+        }
+
+
+        if($authorizedRoutes !== null){
+            if(in_array($routeName, $authorizedRoutes)){
+                return true;
+            }
+
+
+        }
+
+
+
+        return false;
+
+    }
+
+    private function getRightAuthorizedRoutes(Right $right): array
+    {
+        $authorizedRoutes = [];
+        $excludedRoutes = [];
+        foreach($right->getRoutes() as $route ){
+            $authorizedRoutes = array_merge($this->resolveRoutes($route),$authorizedRoutes);
+        }
+
+        foreach ($right->getExcludedRoutes() as $toExclude) {
+            $excludedRoutes = array_merge($this->resolveRoutes($toExclude), $excludedRoutes);
+        }
+
+        foreach ($authorizedRoutes as $key => $exclude) {
+            if (in_array($exclude, $excludedRoutes)) {
+                unset($authorizedRoutes[$key]);
+            }
+        }
+
+
+        return $authorizedRoutes;
+    }
+
+
+    private function resolveRoutes(string $routeName):array
+    {
+        if (strpos($routeName, '*')) {
+            $routeName = substr($routeName, 0, -2);
+        }
+
+        $routeName = '/^'.$routeName.'/';
+
+        $routes = $this->arrayListAllRoutes;
+
+        $authorizedRoutes = [];
+
+        foreach ($routes as $route => $value) {
+            if (preg_match($routeName, $route)) {
+                $authorizedRoutes[] = $route;
+            }
+        }
+        return $authorizedRoutes;
+
 
     }
 }

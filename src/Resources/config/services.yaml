@@ -46,8 +46,11 @@ services:
   arobases.rights_management.checker.admin_route_checker:
     class: Arobases\SyliusRightsManagementPlugin\Access\Checker\AdminRouteChecker
 
+
   arobases.rights_management.checker.admin_user_access_checker:
     class: Arobases\SyliusRightsManagementPlugin\Access\Checker\AdminUserAccessChecker
+    arguments:
+      - '@Symfony\Component\Routing\RouterInterface'
 
   arobases.rights_management.adapter.right_adapter:
     class: Arobases\SyliusRightsManagementPlugin\Adapter\RightAdapter
@@ -63,3 +66,16 @@ services:
       - '@arobases_sylius_rights_management_plugin.repository.right'
     tags:
       - { name: console.command }
+
+
+  arobases.right_management.listener.accessCheckListener:
+    class: Arobases\SyliusRightsManagementPlugin\Access\Listener\AccessCheckListener
+
+    arguments:
+      - '@Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface'
+      - '@arobases.rights_management.checker.admin_user_access_checker'
+      - '@arobases.rights_management.checker.admin_route_checker'
+      - '@session'
+      - '@Symfony\Component\Routing\RouterInterface'
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
