@@ -1,10 +1,11 @@
 {
-    "name": "sylius/sylius-rights-management-skeleton",
+    "name": "arobases-sylius-public/sylius-rights-management-plugin",
     "type": "sylius-plugin",
     "description": "Plugin allowing to manage rights for admin account",
     "keywords": [
         "sylius",
-        "sylius-plugin"
+        "sylius-plugin",
+        "arobases-sylius-plugin"
     ],
     "license": "MIT",
     "require": {
