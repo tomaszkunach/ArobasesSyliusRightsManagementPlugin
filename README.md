@@ -40,6 +40,21 @@ arobases_sylius_rights_management_admin:
     prefix: /admin
  ```
 
+
+### 6. Use AdminUserTrait 
+
+```php
+
+<?php
+//src/Entity/Entity\User.php
+
+class AdminUser extends BaseAdminUser
+{
+    use AdminUserTrait;
+}
+```
+
+
 ### Update shema 
 ```
 php bin/console d:s:u -f
