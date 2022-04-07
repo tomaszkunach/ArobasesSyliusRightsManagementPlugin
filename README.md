@@ -46,7 +46,7 @@ arobases_sylius_rights_management_admin:
 ```php
 
 <?php
-//src/Entity/Entity\User.php
+//src/Entity/AdminUser.php
 
 class AdminUser extends BaseAdminUser
 {
