@@ -17,7 +17,7 @@
   ```
 ### Copy resource
 
-Create file `config/packages/arobases_sylius_rights_management.yaml.yaml` with this content
+Create file `config/packages/arobases_sylius_rights_management.yaml` with this content
 
 ```
 imports:
