@@ -54,29 +54,24 @@ class AccessCheckListener
 
 
 
-        if(strpos($routeName, 'partial') || $routeName === 'sylius_admin_dashboard') {
+        if(strpos($routeName, 'partial') || $routeName === 'sylius_admin_dashboard' || $routeName === 'sylius_admin_login' ) {
             return ;
         }
 
-////        dump( $event->getRequest());
-////        dump($routeName);
-//
 
         if(null === $routeName ){
             return ;
         }
-//
-////        $routeSection = $event->getRequest()->attributes->get('_sylius')['section'];
-//
-////        dump($routeSection);
-//        if(!$this->adminRouteAccessChecker->isAdminRoute($routeName, $routeSection)) {
-//            return ;
-//        }
+
         if(!$this->adminRouteAccessChecker->isAdminRoute($routeName)) {
             return ;
         }
-//
+
         $adminUser = $this->getCurrentAdminUser();
+        
+        if($adminUser->getRole() === null){
+            $event->setResponse( $this->redirectUser($this->getRedirectRoute(), $this->getRedirectMessage()));
+        }
 
         if ($adminUser instanceof AdminUserInterface && $adminUser->getRole())
         {
