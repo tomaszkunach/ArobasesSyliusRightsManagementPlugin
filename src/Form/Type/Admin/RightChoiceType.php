@@ -54,7 +54,6 @@ final class RightChoiceType extends AbstractType
 
                 return ['data-group' => $choice->getRightGroup()->getName()];
             },
-            'choice_translation_domain' => false,
         ]);
     }
 
