@@ -1,0 +1,28 @@
+arobases_sylius_rights_management_plugin:
+    rights:
+        taxon: Taxon
+        product: Product
+        inventory: Inventory
+        order: Order
+        promotion: Promotion
+        customer: Customer
+        channel: Channel
+        country: Country
+        zone: Zone
+        currency: Currency
+        exchange_rate: Exchange rate
+        locale: Locale
+        payment_method: Payment method
+        shipping_method: Shipping method
+        shipping_category: Shipping category
+        tax_category: Tax category
+        tax_rate: tax rate
+        admin_user: Admin user
+        admin_role: Admin role
+    ui:
+        edit_role: Edit role
+        roles: Roles
+        new_role: New role
+    menu:
+        admin:
+            roles: Roles
