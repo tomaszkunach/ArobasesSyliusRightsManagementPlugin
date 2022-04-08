@@ -79,3 +79,8 @@ services:
       - '@Symfony\Component\Routing\RouterInterface'
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+      
+  arobases.right_management.listener.admin_menu:
+    class: Arobases\SyliusRightsManagementPlugin\Menu\AdminMenuListener
+    tags:
+      - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
