@@ -24,7 +24,7 @@ class AdminUserTypeExtension extends AbstractTypeExtension
 //            ])
 //        ;
         $builder->add('role', RoleChoiceType::class, [
-            'label' => 'roles',
+            'label' => 'arobases.sylius.rights_management_plugin.ui.role',
             'required' => false,
             'multiple' => false,
             'expanded' => true,
