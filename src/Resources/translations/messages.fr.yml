@@ -18,12 +18,12 @@ arobases_sylius_rights_management_plugin:
         tax_category: Categories de taxe
         tax_rate: Taux de taxe
         admin_user: Administrateur
-        admin_role: Roles
-        choice_role: Choix du rôle
+        admin_role: Roles        
     ui:
         edit_role: Modifier le role
         roles: Roles
         new_role: Nouveau role
+        choice_role: Choix du rôle
     menu:
         admin:
             roles: Roles
