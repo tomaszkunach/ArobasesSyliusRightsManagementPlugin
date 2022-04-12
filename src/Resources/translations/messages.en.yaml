@@ -23,6 +23,7 @@ arobases_sylius_rights_management_plugin:
         edit_role: Edit role
         roles: Roles
         new_role: New role
+        choice_role: Choice role
     menu:
         admin:
             roles: Roles
