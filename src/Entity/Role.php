@@ -42,7 +42,7 @@ class Role implements ResourceInterface, CodeAwareInterface {
      * @ORM\ManyToMany(targetEntity="Arobases\SyliusRightsManagementPlugin\Entity\Right")
      * @ORM\JoinTable(name="arobases_sylius_rights_management_right_role",
      *      joinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="right_id", referencedColumnName="id", unique=true)}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="right_id", referencedColumnName="id")}
      *      )
      */
     protected Collection $rights;
