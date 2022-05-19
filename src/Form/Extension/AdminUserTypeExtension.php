@@ -18,11 +18,6 @@ class AdminUserTypeExtension extends AbstractTypeExtension
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-//        $builder
-//            ->add('role', EntityType::class, [
-//                'class' => Role::class
-//            ])
-//        ;
         $builder->add('role', RoleChoiceType::class, [
             'label' => 'arobases_sylius_rights_management_plugin.ui.role',
             'required' => false,

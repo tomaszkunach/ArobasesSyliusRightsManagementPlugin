@@ -51,5 +51,4 @@ final class RoleType extends AbstractType
     {
         return 'arobases_admin_role';
     }
-
 }
