@@ -13,7 +13,7 @@
 ### Composer
 
   ```bash
-  composer require arobases-sylius-public/sylius-customer-support-plugin
+    composer require arobases-sylius-public/sylius-rights-management-plugin
   ```
 ### Copy resource
 
