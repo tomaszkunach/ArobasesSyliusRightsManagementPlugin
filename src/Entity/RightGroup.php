@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace Arobases\SyliusRightsManagementPlugin\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Sylius\Component\Core\Model\Customer;
-use Sylius\Component\Core\Model\CustomerInterface;
-use Sylius\Component\Core\Model\Order;
-use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\ToggleableTrait;
+
 
 /**
  * @ORM\Entity
@@ -91,9 +86,4 @@ class RightGroup implements ResourceInterface {
     {
         $this->rights = $rights;
     }
-
-
-
-
-
 }

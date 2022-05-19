@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace  Arobases\SyliusRightsManagementPlugin\Repository\Group;
+namespace Arobases\SyliusRightsManagementPlugin\Repository\Group;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 

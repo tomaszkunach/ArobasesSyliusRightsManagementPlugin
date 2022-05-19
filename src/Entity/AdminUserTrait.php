@@ -32,9 +32,4 @@ trait AdminUserTrait
     {
         $this->role = $role;
     }
-
-
-
-
-
 }

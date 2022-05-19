@@ -21,7 +21,7 @@ final class ArobasesSyliusRightsManagementExtension extends Extension
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
-        $container->setParameter('arobases_sylius_rights_management', $config['rights']);
+        $container->setParameter('arobases_sylius_rights_management', $config['groups']);
     }
 
     public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface

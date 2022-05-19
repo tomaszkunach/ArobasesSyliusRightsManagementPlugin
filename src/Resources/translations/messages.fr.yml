@@ -18,7 +18,15 @@ arobases_sylius_rights_management_plugin:
         tax_category: Categories de taxe
         tax_rate: Taux de taxe
         admin_user: Administrateur
-        admin_role: Roles        
+        admin_role: Roles
+    group:
+        taxon: Taxon
+        product: Produit
+        order: Commande
+        promotion: Promotion
+        user: Client
+        configuration: Configuration
+        administration: Administration
     ui:
         edit_role: Modifier le role
         roles: Roles

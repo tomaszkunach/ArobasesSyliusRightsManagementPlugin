@@ -17,24 +17,28 @@ final class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('arobases_sylius_rights_management');
         $rootNode = $treeBuilder->getRootNode();
 
-
         $rootNode
-                ->children()
-                    ->arrayNode('rights')
-                        ->arrayPrototype()
-                            ->children()
-                                ->scalarNode('name')->end()
-                                ->scalarNode('redirect_to')->end()
-                                ->arrayNode('routes')
-                                   ->scalarPrototype()->end()
-                                ->end()
-                                ->arrayNode('excludes')
-                                    ->scalarPrototype()->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
+            ->fixXmlConfig('group')
+            ->children()
+                ->arrayNode('groups')
+                ->useAttributeAsKey('group_name')
+                ->arrayPrototype()
+                    ->fixXmlConfig('right')
+                    ->children()
+                        ->arrayNode('rights')
+                            ->defaultValue([])
+                            ->useAttributeAsKey('right_name')
+                            ->arrayPrototype()
+                                ->canBeDisabled()
+                                ->children()
+                                    ->scalarNode('name')->end()
+                                    ->scalarNode('redirect_to')->end()
+                                    ->arrayNode('routes')
+                                        ->scalarPrototype()->end()
+                                    ->end()
+                                    ->arrayNode('excludes')
+                                        ->scalarPrototype()->end()
+                                    ->end()
         ;
 
         return $treeBuilder;

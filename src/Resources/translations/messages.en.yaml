@@ -16,9 +16,17 @@ arobases_sylius_rights_management_plugin:
         shipping_method: Shipping method
         shipping_category: Shipping category
         tax_category: Tax category
-        tax_rate: tax rate
+        tax_rate: Tax rate
         admin_user: Admin user
         admin_role: Admin role
+    group:
+        taxon: Taxon
+        product: Product
+        order: Order
+        promotion: Promotion
+        user: User
+        configuration: Configuration
+        administration: Administration
     ui:
         edit_role: Edit role
         roles: Roles

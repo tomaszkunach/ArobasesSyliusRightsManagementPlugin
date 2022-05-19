@@ -14,10 +14,6 @@ class AdminUserAccessChecker
     private RouterInterface $router;
     private array $arrayListAllRoutes;
 
-    /**
-     * AdminUserAccessChecker constructor.
-     * @param RouterInterface $router
-     */
     public function __construct(RouterInterface $router)
     {
         $this->router = $router;
@@ -27,31 +23,19 @@ class AdminUserAccessChecker
 
     public function isUserGranted(UserInterface $adminUser, string $routeName)
     {
-
-
         $authorizedRoutes = [];
-
-
         $rights =  $adminUser->getRole()->getRights();
         /** @var Right $right */
         foreach($rights as $right){
-
             $authorizedRoutes = array_merge($this->getRightAuthorizedRoutes($right),$authorizedRoutes );
         }
-
 
         if($authorizedRoutes !== null){
             if(in_array($routeName, $authorizedRoutes)){
                 return true;
             }
-
-
         }
-
-
-
         return false;
-
     }
 
     private function getRightAuthorizedRoutes(Right $right): array
@@ -71,22 +55,16 @@ class AdminUserAccessChecker
                 unset($authorizedRoutes[$key]);
             }
         }
-
-
         return $authorizedRoutes;
     }
-
 
     private function resolveRoutes(string $routeName):array
     {
         if (strpos($routeName, '*')) {
             $routeName = substr($routeName, 0, -2);
         }
-
         $routeName = '/^'.$routeName.'/';
-
         $routes = $this->arrayListAllRoutes;
-
         $authorizedRoutes = [];
 
         foreach ($routes as $route => $value) {
@@ -95,8 +73,6 @@ class AdminUserAccessChecker
             }
         }
         return $authorizedRoutes;
-
-
     }
 }
 

@@ -11,7 +11,6 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="arobases_sylius_right_management_role")
@@ -120,11 +119,4 @@ class Role implements ResourceInterface, CodeAwareInterface {
     {
         $this->code = $code;
     }
-
-
-
-
-
-
-
 }

@@ -1,46 +1,14 @@
 {{ form_row(form.code) }}
 {{ form_row(form.name) }}
 {% set formattedRightArray = arobases_rights_plugin_get_formatted_right_array(form.rights) %}
-
-
 {% for group, forms in  formattedRightArray %}
 <div>
-    <h1>{{ group }}</h1>
+    <h2>{{ group|trans }}</h2>
     {% for right in forms  %}
       {{ form_row(right) }}
     {% endfor %}
-
 </div>
 
 {% endfor %}
-{#{{ form_row(form.rights) }}#}
-
-
-
-{#{% set arrayGroup  = [] %}#}
-{#{% for right in form.rights   %}#}
-{#        {% set group = right.vars.attr['data-group']  %}#}
-{#        {% if  arrayGroup[group] is defined %}#}
-{#                {{ dump('cc') }}#}
-{#                 {% set arrayGroup =  %}#}
-{#                        {{ dump(arrayGroup) }}#}
-{#                {% set arrayGroup = arrayGroup[group]|merge({ 'right2' : right}) %}#}
-{#                {{ dump(arrayGroup) }}#}
-
-
-
-{#        {% else %}#}
-{#                {{ dump("vv") }}#}
-{#                {% set arrayGroup = arrayGroup|merge({ (group) : [right]}) %}#}
-
-
-{#        {% endif %}#}
-
-
-
-{#{% endfor %}#}
-{#{{ dump(arrayGroup) }}#}
-
-
 
 

@@ -5,16 +5,12 @@ declare(strict_types=1);
 
 namespace  Arobases\SyliusRightsManagementPlugin\Twig\Extensions;
 
-
-use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormView;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 final class FormatRightArrayExtension extends AbstractExtension
 {
-
-
 
     public function getFunctions(): array
     {
@@ -37,7 +33,5 @@ final class FormatRightArrayExtension extends AbstractExtension
 
         }
         return $arrayRightFormatted;
-
-
     }
 }
