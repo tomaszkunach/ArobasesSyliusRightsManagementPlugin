@@ -20,7 +20,7 @@ arobases_sylius_rights_management:
       rights:
         all:
           name: 'arobases_sylius_rights_management_plugin.rights.order'
-          routes: ['sylius_admin_order_*', 'sylius_admin_payment_*', 'sylius_admin_shipment_*','sylius_invoicing_plugin_admin_invoice_*', 'sylius_refund_*']
+          routes: ['sylius_admin_order_*', 'sylius_admin_payment_*', 'sylius_admin_shipment_*','sylius_invoicing_plugin_admin_invoice_*', 'sylius_refund_*', 'sylius_admin_ajax_render_province_*']
           excludes: ['sylius_admin_payment_method_*']
           redirect_to: sylius_admin_dashboard
     arobases_sylius_rights_management_plugin.group.promotion:
