@@ -25,6 +25,7 @@ class AdminUserAccessChecker
     {
         $authorizedRoutes = [];
         $rights =  $adminUser->getRole()->getRights();
+
         /** @var Right $right */
         foreach($rights as $right){
             $authorizedRoutes = array_merge($this->getRightAuthorizedRoutes($right),$authorizedRoutes );

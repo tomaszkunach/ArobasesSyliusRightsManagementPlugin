@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Arobases\SyliusRightsManagementPlugin\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -36,9 +37,10 @@ class Role implements ResourceInterface, CodeAwareInterface {
      */
     protected string $name;
 
-
     /**
-     * @ORM\ManyToMany(targetEntity="Arobases\SyliusRightsManagementPlugin\Entity\Right")
+     * @ORM\ManyToMany(targetEntity="Arobases\SyliusRightsManagementPlugin\Entity\Right",
+     *     mappedBy="roles", fetch="EXTRA_LAZY")
+     *
      * @ORM\JoinTable(name="arobases_sylius_rights_management_right_role",
      *      joinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="right_id", referencedColumnName="id")}
@@ -47,14 +49,19 @@ class Role implements ResourceInterface, CodeAwareInterface {
     protected Collection $rights;
 
     /**
-     * @ORM\OneToMany(targetEntity="Sylius\Component\Core\Model\AdminUser",
-     *     mappedBy="Role", fetch="EXTRA_LAZY",
+     * @ORM\OneToMany(targetEntity="Sylius\Component\Core\Model\AdminUserInterface",
+     *     mappedBy="role", fetch="EXTRA_LAZY",
      *     cascade={"persist", "remove"}
      *      )
      */
 
     protected Collection $adminUsers;
 
+
+    public function __construct()
+    {
+        $this->rights = new ArrayCollection();
+    }
 
     /**
      * @return int|null
@@ -96,13 +103,22 @@ class Role implements ResourceInterface, CodeAwareInterface {
         return $this->rights;
     }
 
-    /**
-     * @param Collection $rights
-     */
-    public function setRights(Collection $rights): void
+    public function addRight(Right $right): self
     {
-        $this->rights = $rights;
+        if (!$this->rights->contains($right)) {
+            $this->rights[] = $right;
+            $right->addRole($this);
+        }
+        return $this;
     }
+    public function removeRight(Right $right): self
+    {
+        if ($this->rights->removeElement($right)) {
+            $right->removeRole($this);
+        }
+        return $this;
+    }
+
 
     /**
      * @return string|null

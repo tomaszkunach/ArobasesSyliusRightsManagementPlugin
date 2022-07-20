@@ -17,7 +17,6 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 
 class RightGroup implements ResourceInterface {
 
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -37,7 +36,7 @@ class RightGroup implements ResourceInterface {
      *      )
      */
 
-    protected Collection $rightGroup;
+    protected Collection $rights;
 
     /**
      * @return int|null
@@ -86,4 +85,5 @@ class RightGroup implements ResourceInterface {
     {
         $this->rights = $rights;
     }
+
 }

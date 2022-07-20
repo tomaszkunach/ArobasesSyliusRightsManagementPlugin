@@ -10,7 +10,7 @@ arobases_sylius_rights_management:
       rights:
         product:
           name: 'arobases_sylius_rights_management_plugin.rights.product'
-          routes: ['sylius_admin_product_*', 'sylius_admin_get_product_attributes_*', 'sylius_admin_get_attribute_types' ]
+          routes: ['sylius_admin_product_*', 'sylius_admin_get_product_attributes_*', 'sylius_admin_get_attribute_types', 'sylius_admin_ajax_generate_product_slug', 'sylius_admin_ajax_taxon_*', 'sylius_admin_ajax_product_*' ]
           redirect_to: sylius_admin_dashboard
         stock:
           name: 'arobases_sylius_rights_management_plugin.rights.inventory'

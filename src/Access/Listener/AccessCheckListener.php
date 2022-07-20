@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 
 class AccessCheckListener
@@ -36,13 +37,17 @@ class AccessCheckListener
 
     public function onKernelRequest(RequestEvent $event): void
     {
+        if($event->getRequestType() !== HttpKernelInterface::MAIN_REQUEST ){
+            return ;
+        }
+
         $routeName = $event->getRequest()->get('_route');
 
         if(null ===$routeName) {
             return;
         }
 
-        if(strpos($routeName, 'partial') || $routeName === 'sylius_admin_dashboard' || $routeName === 'sylius_admin_login' ) {
+        if(strpos($routeName, 'partial') || $routeName === 'sylius_admin_dashboard' || $routeName === 'sylius_admin_login') {
             return ;
         }
 
@@ -53,13 +58,17 @@ class AccessCheckListener
         if(!$this->adminRouteAccessChecker->isAdminRoute($routeName)) {
             return ;
         }
+
         $adminUser = $this->getCurrentAdminUser();
+
         if($adminUser->getRole() === null){
             $event->setResponse( $this->redirectUser($this->getRedirectRoute(), $this->getRedirectMessage()));
         }
 
         if ($adminUser instanceof AdminUserInterface && $adminUser->getRole()) {
+
             $isUserGranted = $this->adminUserAccessChecker->isUserGranted($adminUser, $routeName);
+
             if(!$isUserGranted){
                 $event->setResponse( $this->redirectUser($this->getRedirectRoute(), $this->getRedirectMessage()));
             }

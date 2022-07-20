@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arobases\SyliusRightsManagementPlugin\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -38,10 +39,12 @@ class Right implements ResourceInterface {
      *     fetch="EXTRA_LAZY",
      *      cascade={"persist", "remove"}
      * )
-     *
+     * * @ORM\JoinTable(name="arobases_sylius_rights_management_right_role",
+     *      joinColumns={@ORM\JoinColumn(name="right_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
+     *      )
      */
     protected Collection $roles;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="Arobases\SyliusRightsManagementPlugin\Entity\RightGroup",
@@ -67,6 +70,12 @@ class Right implements ResourceInterface {
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected ?string $redirectTo = null;
+
+
+    public function __construct()
+    {
+        $this->roles = new ArrayCollection();
+    }
 
     /**
      * @return int|null
@@ -101,19 +110,32 @@ class Right implements ResourceInterface {
     }
 
     /**
-     * @return Role|null
+     * @return Collection
      */
-    public function getAdministrationRole(): ?Role
+    public function getRoles(): Collection
     {
-        return $this->administrationRole;
+        return $this->roles;
     }
 
     /**
-     * @param Role|null $administrationRole
+     * @param Collection $roles
      */
-    public function setAdministrationRole(?Role $administrationRole): void
+    public function setRoles(Collection $roles): void
     {
-        $this->administrationRole = $administrationRole;
+        $this->roles = $roles;
+    }
+    public function addRole(Role $role): self
+    {
+        if (!$this->roles->contains($role)) {
+            $this->roles[] = $role;
+        }
+        return $this;
+    }
+
+    public function removeRole(Role $role): self
+    {
+        $this->roles->removeElement($role);
+        return $this;
     }
 
     /**
@@ -149,6 +171,22 @@ class Right implements ResourceInterface {
     }
 
     /**
+     * @return array|null
+     */
+    public function getExcludedRoutes(): ?array
+    {
+        return $this->excludedRoutes;
+    }
+
+    /**
+     * @param array|null $excludedRoutes
+     */
+    public function setExcludedRoutes(?array $excludedRoutes): void
+    {
+        $this->excludedRoutes = $excludedRoutes;
+    }
+
+    /**
      * @return string|null
      */
     public function getRedirectTo(): ?string
@@ -164,19 +202,4 @@ class Right implements ResourceInterface {
         $this->redirectTo = $redirectTo;
     }
 
-    /**
-     * @return array|null
-     */
-    public function getExcludedRoutes(): ?array
-    {
-        return $this->excludedRoutes;
-    }
-
-    /**
-     * @param array|null $excludedRoutes
-     */
-    public function setExcludedRoutes(?array $excludedRoutes): void
-    {
-        $this->excludedRoutes = $excludedRoutes;
-    }
 }
