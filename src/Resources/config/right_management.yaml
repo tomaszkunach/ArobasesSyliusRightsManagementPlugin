@@ -4,7 +4,7 @@ arobases_sylius_rights_management:
       rights:
         all:
           name: 'arobases_sylius_rights_management_plugin.rights.taxon'
-          routes: ['sylius_admin_taxon_*']
+          routes: ['sylius_admin_taxon_*', 'sylius_admin_ajax_generate_taxon_slug']
           redirect_to: sylius_admin_dashboard
     arobases_sylius_rights_management_plugin.group.product:
       rights:
