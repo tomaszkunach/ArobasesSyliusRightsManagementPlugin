@@ -20,8 +20,3 @@ sylius_resource:
       classes:
         model: Arobases\SyliusRightsManagementPlugin\Entity\RightGroup
         repository: Arobases\SyliusRightsManagementPlugin\Repository\Group\RightGroupRepository
-
-
-imports:
-  - { resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/grids.yaml" }
-  - { resource: '@ArobasesSyliusRightsManagementPlugin/Resources/config/right_management.yaml'}
