@@ -35,7 +35,7 @@ Create file `config/packages/arobases_sylius_rights_management_plugin.yaml` with
 
 ```
 imports:
-  - { resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/resources.yaml" }
+  - { resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/config.yaml" }
 ```
 ### Step 4: Import routing
 

@@ -2,4 +2,3 @@ imports:
   - { resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/resources.yaml" }
   - { resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/grids.yaml" }
   - { resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/right_management.yaml" }
-  - { resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/services.yaml" }
