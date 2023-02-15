@@ -119,7 +119,7 @@ DEFAULT_ADMIN_ROLE_NAME=EDITME
 ```
 if you don't change this lines, when you will create the rights with the command, you will no longer have access to anything in the back office because you will not have the rights.
 
-### Step 10: Use the command line to create roles, right group and rights :
+### Step 10: Use the command line to create roles, rights group and rights :
 
 ```
 php bin/console arobases:right:create-admin-right
@@ -231,7 +231,7 @@ arobases_sylius_rights_management:
           name: 'arobases_sylius_rights_management_plugin.rights.admin_role'
           routes: ['arobases_sylius_rights_management_plugin_admin_role_*']
  ```
-However you can modify or add some right or right group in your file config/packages/arobases_sylius_rights_management_plugin.yaml : 
+However you can modify or add some rights or rights group in your file config/packages/arobases_sylius_rights_management_plugin.yaml : 
 ```yaml
 #config/packages/arobases_sylius_rights_management_plugin.yaml
 
