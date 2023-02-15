@@ -1,8 +1,4 @@
-<p align="center">
-    <a href="https://sylius.com" target="_blank">
-        <img src="https://demo.sylius.com/assets/shop/img/logo.png" />
-    </a>
-</p>
+![arobases_banner](https://user-images.githubusercontent.com/39689570/219011303-0f062e3d-0e8b-4dc1-9b6c-563c8647f68a.jpg)
 
 
 
@@ -121,6 +117,9 @@ DEFAULT_ADMIN_ROLE_NAME=EDITME
 ```
 if you don't do that, when you create the rights with the command, you will no longer have access to anything in the back office since you will not have the rights.
 ### Screenshots
+![role_index](https://user-images.githubusercontent.com/39689570/219010702-9d01edba-bc4b-4772-88f6-ef2ca85db530.png)
+![role_update](https://user-images.githubusercontent.com/39689570/219010777-4b8d00d1-6553-4836-959f-5491883f15a7.png)
+![role_update2](https://user-images.githubusercontent.com/39689570/219010876-bb5e3fe1-df3e-411c-b58a-6451139e6a71.png)
 
 
 ### Usage
