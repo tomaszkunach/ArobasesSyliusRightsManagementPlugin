@@ -42,12 +42,6 @@ imports:
 
 Create file `config/routes/arobases_sylius_rights_management_plugin.yaml` with this content
 ```
-arobases_sylius_rights_management_plugin_shop:
-    resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/shop_routing.yml"
-    prefix: /{_locale}
-    requirements:
-        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
-
 arobases_sylius_rights_management_plugin_admin:
     resource: "@ArobasesSyliusRightsManagementPlugin/Resources/config/admin_routing.yml"
     prefix: /admin
@@ -81,12 +75,12 @@ class AdminUser extends BaseAdminUser implements AdminUserInterface
 
 ```
 
-### Step 6: Modify template SyliusAdminBundle/AdminUser/_form.html.twig
+### Step 6: Modify template SyliusAdminBundle/AdminUser/Form/_generalInfoExtended.html.twig
 ```html.twig
- {# templates/bundles/SyliusAdminBundle/AdminUser/_form.html.twig #}
+ {# templates/bundles/SyliusAdminBundle/AdminUser/Form/_generalInfoExtended.html.twig #}
     ...
     <div class="ui segment">
-       <h4 class="ui dividing header">{{ 'arobases.sylius.rights_management.choice_role'|trans }}</h4>
+       <h4 class="ui dividing header">{{ 'arobases_sylius_rights_management_plugin.ui.choice_role'|trans }}</h4>
        {{ form_row(form.role) }}
     </div>
     ...
