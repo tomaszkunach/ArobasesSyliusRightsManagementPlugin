@@ -3,7 +3,8 @@
 This plugin allows you to manage the rights and roles of administrator users
 
 
-![arobases_banner](https://user-images.githubusercontent.com/39689570/219011303-0f062e3d-0e8b-4dc1-9b6c-563c8647f68a.jpg)
+![arobases_banner](https://user-images.githubusercontent.com/39689570/219030936-8649849f-11a4-4533-bd5d-6f79662aca87.jpg)
+
 
 
 
@@ -11,7 +12,7 @@ This plugin allows you to manage the rights and roles of administrator users
 
 ### Step 1: Download the plugin
 
-* Install the bundle via composer `require arobases/sylius-rights-management-plugin`
+* Install the plugin with composer `require arobases/sylius-rights-management-plugin`
 
 ### Step 2: Enable the plugin
 
@@ -52,7 +53,7 @@ arobases_sylius_rights_management_plugin_admin:
     prefix: /admin
  ```
 
-### Step 5: Use AdminUserTrait and use AdminUserInterface
+### Step 5: Use AdminUserTrait and implement AdminUserInterface
 
 
 ```php
@@ -103,7 +104,7 @@ php bin/console asset:install
 php bin/console cache:clear
 ```
 
-### Step 9: Define your default role (for example "administrator") and the username of the admin account that will have this role by default 
+### Step 9: Define your default role (for example "administrator") and the username of the admin account which will have this role by default 
 
 
 ```env
@@ -116,7 +117,14 @@ DEFAULT_ADMIN_ROLE_NAME=EDITME
 ###> arobases/sylius-rights-management ###
 
 ```
-if you don't do that, when you create the rights with the command, you will no longer have access to anything in the back office since you will not have the rights.
+if you don't change this lines, when you will create the rights with the command, you will no longer have access to anything in the back office because you will not have the rights.
+
+### Step 10: Use the command line to create roles, right group and rights :
+
+```
+php bin/console arobases:right:create-admin-right
+```
+
 ### Screenshots
 
 <h3 align="center">Index</h3>
@@ -139,7 +147,7 @@ if you don't do that, when you create the rights with the command, you will no l
 
 There is a pre-configured list of default rights :
 ```yaml
-#src/Resources/config/right_management.yaml
+#vendor/arobases/sylius-rights-management-plugin/src/Resources/config/right_management.yaml
 
 arobases_sylius_rights_management:
   groups:
