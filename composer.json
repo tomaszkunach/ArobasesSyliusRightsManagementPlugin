@@ -1,11 +1,12 @@
 {
-    "name": "arobases-sylius-public/sylius-rights-management-plugin",
+    "name": "arobases/sylius-rights-management-plugin",
     "type": "sylius-plugin",
     "description": "This plugin allows you to manage the rights and roles of administrator users",
     "keywords": [
         "sylius",
         "sylius-plugin",
-        "arobases-sylius-plugin"
+        "arobases-sylius-plugin",
+        "arobases"
     ],
     "license": "MIT",
     "require": {
