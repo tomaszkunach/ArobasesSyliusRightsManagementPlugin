@@ -1,10 +1,11 @@
-![arobases_banner](https://user-images.githubusercontent.com/39689570/219011303-0f062e3d-0e8b-4dc1-9b6c-563c8647f68a.jpg)
-
-
-
 # Arobases SyliusRightsManagementPlugin
 
 This plugin allows you to manage the rights and roles of administrator users
+
+
+![arobases_banner](https://user-images.githubusercontent.com/39689570/219011303-0f062e3d-0e8b-4dc1-9b6c-563c8647f68a.jpg)
+
+
 
 <h2 align="center">Installation</h2>
 
@@ -117,15 +118,21 @@ DEFAULT_ADMIN_ROLE_NAME=EDITME
 ```
 if you don't do that, when you create the rights with the command, you will no longer have access to anything in the back office since you will not have the rights.
 ### Screenshots
+
 <h3 align="center">Index</h3>
 
-  ![role_index](https://user-images.githubusercontent.com/39689570/219010702-9d01edba-bc4b-4772-88f6-ef2ca85db530.png)
+![role_index](https://user-images.githubusercontent.com/39689570/219010702-9d01edba-bc4b-4772-88f6-ef2ca85db530.png) 
 
 <h3 align="center">Edit/create role</h3>
-<center>![role_update](https://user-images.githubusercontent.com/39689570/219010777-4b8d00d1-6553-4836-959f-5491883f15a7.png)</center>
-<center>![role_update2](https://user-images.githubusercontent.com/39689570/219010876-bb5e3fe1-df3e-411c-b58a-6451139e6a71.png)</center>
+
+![role_update](https://user-images.githubusercontent.com/39689570/219010777-4b8d00d1-6553-4836-959f-5491883f15a7.png)
+
+![role_update2](https://user-images.githubusercontent.com/39689570/219010876-bb5e3fe1-df3e-411c-b58a-6451139e6a71.png)
+
 <h3>Error if the user does not have the rights</h3>
-<center>![access_denied](https://user-images.githubusercontent.com/39689570/219026995-3a37f643-0e10-4637-a40c-70c49077a770.png)</center>
+
+![access_denied](https://user-images.githubusercontent.com/39689570/219026995-3a37f643-0e10-4637-a40c-70c49077a770.png)
+
 
 
 ### Usage
