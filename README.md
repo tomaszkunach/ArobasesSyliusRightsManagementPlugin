@@ -1,4 +1,4 @@
-# Arobases SyliusRightsManagementPlugin
+# Arobases Sylius Rights Management Plugin
 
 This plugin allows you to manage the rights and roles of administrator users
 
