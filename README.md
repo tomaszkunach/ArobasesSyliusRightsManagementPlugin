@@ -83,7 +83,7 @@ class AdminUser extends BaseAdminUser implements AdminUserInterface
 
 ### Step 6: Modify template SyliusAdminBundle/AdminUser/_form.html.twig
 ```html.twig
- {# templates/bundles/SyliusAdminBundle/AdminUser/_form.html.twig %}
+ {# templates/bundles/SyliusAdminBundle/AdminUser/_form.html.twig #}
     ...
     <div class="ui segment">
        <h4 class="ui dividing header">{{ 'arobases.sylius.rights_management.choice_role'|trans }}</h4>
