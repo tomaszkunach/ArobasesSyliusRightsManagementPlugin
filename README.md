@@ -12,7 +12,7 @@ This plugin allows you to manage the rights and roles of administrator users
 
 ### Step 1: Download the plugin
 
-* Install the plugin with composer `require arobases/sylius-rights-management-plugin`
+* Install the plugin with `composer require arobases/sylius-rights-management-plugin`
 
 ### Step 2: Enable the plugin
 
