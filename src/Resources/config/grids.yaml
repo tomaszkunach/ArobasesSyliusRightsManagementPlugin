@@ -6,14 +6,10 @@ sylius_grid:
         options:
           class: '%arobases_sylius_rights_management_plugin.model.role.class%'
       sorting:
-#        date_updated_at: desc
       fields:
         name:
           type: string
           label: sylius.ui.name
-
-      filters:
-
       actions:
         item:
           update:

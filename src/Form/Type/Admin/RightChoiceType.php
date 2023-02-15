@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Arobases\SyliusRightsManagementPlugin\Form\Type\Admin;
 
-use Arobases\SyliusRightsManagementPlugin\Entity\RightGroup;
 use Arobases\SyliusRightsManagementPlugin\Repository\Right\RightRepository;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -16,7 +14,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class RightChoiceType extends AbstractType
 {
-
     private RightRepository $rightRepository;
 
     public function __construct(RightRepository $rightRepository)
@@ -39,8 +36,7 @@ final class RightChoiceType extends AbstractType
             },
             'choice_value' => 'id',
             'choice_label' => 'name',
-            'choice_attr' => function($choice, $key, $value) {
-
+            'choice_attr' => function ($choice) {
                 return ['data-group' => $choice->getRightGroup()->getName()];
             },
         ]);

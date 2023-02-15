@@ -1,7 +1,7 @@
 {
     "name": "arobases-sylius-public/sylius-rights-management-plugin",
     "type": "sylius-plugin",
-    "description": "Plugin allowing to manage rights for admin account",
+    "description": "This plugin allows you to manage the rights and roles of administrator users",
     "keywords": [
         "sylius",
         "sylius-plugin",
@@ -10,7 +10,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4 || ^8.0",
-        "sylius/sylius": "^1.9|^1.10"
+        "sylius/sylius": "v1.10.14"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
@@ -44,7 +44,12 @@
         "polishsymfonycommunity/symfony-mocker-container": "^1.0"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/thanks": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "branch-alias": {

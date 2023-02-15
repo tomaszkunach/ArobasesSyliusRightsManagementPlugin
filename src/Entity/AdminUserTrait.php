@@ -17,17 +17,11 @@ trait AdminUserTrait
      */
     protected ?Role $role = null;
 
-    /**
-     * @return Role|null
-     */
     public function getRole(): ?Role
     {
         return $this->role;
     }
 
-    /**
-     * @param Role|null $role
-     */
     public function setRole(?Role $role): void
     {
         $this->role = $role;

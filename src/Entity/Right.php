@@ -4,21 +4,18 @@ declare(strict_types=1);
 
 namespace Arobases\SyliusRightsManagementPlugin\Entity;
 
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="arobases_sylius_rights_management_right")
  */
-
-class Right implements ResourceInterface {
-
+class Right implements ResourceInterface
+{
     use TimestampableEntity;
 
     /**
@@ -28,9 +25,7 @@ class Right implements ResourceInterface {
      */
     protected ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
+    /** @ORM\Column(type="string", length=100) */
     protected string $name;
 
     /**
@@ -55,151 +50,90 @@ class Right implements ResourceInterface {
      */
     protected ?RightGroup $rightGroup = null;
 
-    /**
-     * @ORM\Column(type="array", length=511, nullable=true)
-     */
-     protected ?array $routes = null;
+    /** @ORM\Column(type="array", length=511, nullable=true) */
+    protected ?array $routes = null;
 
-    /**
-     * @ORM\Column(type="array", length=511, nullable=true)
-     */
+    /** @ORM\Column(type="array", length=511, nullable=true) */
     protected ?array $excludedRoutes = null;
-
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    protected ?string $redirectTo = null;
-
 
     public function __construct()
     {
         $this->roles = new ArrayCollection();
     }
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int|null $id
-     */
     public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return Collection
-     */
     public function getRoles(): Collection
     {
         return $this->roles;
     }
 
-    /**
-     * @param Collection $roles
-     */
     public function setRoles(Collection $roles): void
     {
         $this->roles = $roles;
     }
+
     public function addRole(Role $role): self
     {
         if (!$this->roles->contains($role)) {
             $this->roles[] = $role;
         }
+
         return $this;
     }
 
     public function removeRole(Role $role): self
     {
         $this->roles->removeElement($role);
+
         return $this;
     }
 
-    /**
-     * @return RightGroup|null
-     */
     public function getRightGroup(): ?RightGroup
     {
         return $this->rightGroup;
     }
 
-    /**
-     * @param RightGroup|null $rightGroup
-     */
     public function setRightGroup(?RightGroup $rightGroup): void
     {
         $this->rightGroup = $rightGroup;
     }
 
-    /**
-     * @return array|null
-     */
     public function getRoutes(): ?array
     {
         return $this->routes;
     }
 
-    /**
-     * @param array|null $routes
-     */
     public function setRoutes(?array $routes): void
     {
         $this->routes = $routes;
     }
 
-    /**
-     * @return array|null
-     */
     public function getExcludedRoutes(): ?array
     {
         return $this->excludedRoutes;
     }
 
-    /**
-     * @param array|null $excludedRoutes
-     */
     public function setExcludedRoutes(?array $excludedRoutes): void
     {
         $this->excludedRoutes = $excludedRoutes;
     }
-
-    /**
-     * @return string|null
-     */
-    public function getRedirectTo(): ?string
-    {
-        return $this->redirectTo;
-    }
-
-    /**
-     * @param string|null $redirectTo
-     */
-    public function setRedirectTo(?string $redirectTo): void
-    {
-        $this->redirectTo = $redirectTo;
-    }
-
 }

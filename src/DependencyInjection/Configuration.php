@@ -32,7 +32,6 @@ final class Configuration implements ConfigurationInterface
                                 ->canBeDisabled()
                                 ->children()
                                     ->scalarNode('name')->end()
-                                    ->scalarNode('redirect_to')->end()
                                     ->arrayNode('routes')
                                         ->scalarPrototype()->end()
                                     ->end()

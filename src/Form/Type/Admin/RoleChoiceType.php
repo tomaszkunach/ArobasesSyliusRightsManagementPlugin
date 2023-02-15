@@ -18,13 +18,11 @@ final class RoleChoiceType extends AbstractType
 
     /**
      * RoleChoiceType constructor.
-     * @param RoleRepository $roleRepository
      */
     public function __construct(RoleRepository $roleRepository)
     {
         $this->roleRepository = $roleRepository;
     }
-
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -41,8 +39,8 @@ final class RoleChoiceType extends AbstractType
             },
             'choice_value' => 'code',
             'choice_label' => 'name',
-            'choice_translation_domain' => false,
-            'placeholder' => 'Aucun role'
+            'choice_translation_domain' => true,
+            'placeholder' => 'arobases_sylius_rights_management_plugin.ui.no_role',
         ]);
     }
 
@@ -53,6 +51,6 @@ final class RoleChoiceType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'arobases_sylius_rights_management_role_choice';
+        return 'arobases_sylius_rights_management_plugin_role_choice';
     }
 }

@@ -4,7 +4,6 @@ sylius_resource:
       driver: doctrine/orm
       classes:
         model: Arobases\SyliusRightsManagementPlugin\Entity\Right
-#        form: Arobases\SyliusCustomerSupportPlugin\Form\Admin\CustomerSupportType
         repository: Arobases\SyliusRightsManagementPlugin\Repository\Right\RightRepository
       templates: '@SyliusAdmin/Crud'
 

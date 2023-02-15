@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Arobases\SyliusRightsManagementPlugin\Access\Checker;
 
-
 use Arobases\SyliusRightsManagementPlugin\Entity\Right;
-use Sylius\Component\User\Model\UserInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class AdminUserAccessChecker
 {
     private RouterInterface $router;
+
     private array $arrayListAllRoutes;
 
     public function __construct(RouterInterface $router)
@@ -20,22 +20,25 @@ class AdminUserAccessChecker
         $this->arrayListAllRoutes = $this->router->getRouteCollection()->all();
     }
 
-
-    public function isUserGranted(UserInterface $adminUser, string $routeName)
+    public function isUserGranted(UserInterface $adminUser, string $routeName): bool
     {
         $authorizedRoutes = [];
-        $rights =  $adminUser->getRole()->getRights();
-
-        /** @var Right $right */
-        foreach($rights as $right){
-            $authorizedRoutes = array_merge($this->getRightAuthorizedRoutes($right),$authorizedRoutes );
+        if (null === $adminUser->getRole()) {
+            return false;
         }
 
-        if($authorizedRoutes !== null){
-            if(in_array($routeName, $authorizedRoutes)){
+        $rights = $adminUser->getRole()->getRights();
+        /** @var Right $right */
+        foreach ($rights as $right) {
+            $authorizedRoutes = array_merge($this->getRightAuthorizedRoutes($right), $authorizedRoutes);
+        }
+
+        if (!empty($authorizedRoutes)) {
+            if (in_array($routeName, $authorizedRoutes)) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -43,8 +46,8 @@ class AdminUserAccessChecker
     {
         $authorizedRoutes = [];
         $excludedRoutes = [];
-        foreach($right->getRoutes() as $route ){
-            $authorizedRoutes = array_merge($this->resolveRoutes($route),$authorizedRoutes);
+        foreach ($right->getRoutes() as $route) {
+            $authorizedRoutes = array_merge($this->resolveRoutes($route), $authorizedRoutes);
         }
 
         foreach ($right->getExcludedRoutes() as $toExclude) {
@@ -56,15 +59,16 @@ class AdminUserAccessChecker
                 unset($authorizedRoutes[$key]);
             }
         }
+
         return $authorizedRoutes;
     }
 
-    private function resolveRoutes(string $routeName):array
+    private function resolveRoutes(string $routeName): array
     {
         if (strpos($routeName, '*')) {
             $routeName = substr($routeName, 0, -2);
         }
-        $routeName = '/^'.$routeName.'/';
+        $routeName = '/^' . $routeName . '/';
         $routes = $this->arrayListAllRoutes;
         $authorizedRoutes = [];
 
@@ -73,7 +77,7 @@ class AdminUserAccessChecker
                 $authorizedRoutes[] = $route;
             }
         }
+
         return $authorizedRoutes;
     }
 }
-

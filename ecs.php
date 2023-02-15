@@ -1,14 +1,17 @@
 <?php
 
-use PhpCsFixer\Fixer\ClassNotation\VisibilityRequiredFixer;
-use SlevomatCodingStandard\Sniffs\Commenting\InlineDocCommentDeclarationSniff;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symplify\EasyCodingStandard\ValueObject\Option;
+declare(strict_types=1);
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import('vendor/sylius-labs/coding-standard/ecs.php');
+use PhpCsFixer\Fixer\ControlStructure\TrailingCommaInMultilineFixer;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 
-    $containerConfigurator->parameters()->set(Option::SKIP, [
-        VisibilityRequiredFixer::class => ['*Spec.php'],
-    ]);
+return static function (ECSConfig $config): void {
+    $config->import(__DIR__ . '/vendor/sylius-labs/coding-standard/ecs.php');
+
+    $services = $config->services();
+
+    $services
+        ->set(TrailingCommaInMultilineFixer::class)
+        ->call('configure', [['elements' => ['arrays']]])
+    ;
 };
