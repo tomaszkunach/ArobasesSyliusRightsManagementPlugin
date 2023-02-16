@@ -7,6 +7,9 @@
         "sylius-plugin",
         "arobases-sylius-plugin",
         "arobases"
+        "sylius right management"
+        "rights management"
+        "right management sylius plugin"
     ],
     "license": "MIT",
     "require": {
