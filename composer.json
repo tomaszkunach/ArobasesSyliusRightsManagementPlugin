@@ -14,7 +14,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4 || ^8.0",
-        "sylius/sylius": "v1.10.14"
+        "sylius/sylius": "^1.10 || dev-bootstrap-shop"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
@@ -39,11 +39,11 @@
         "phpunit/phpunit": "^9.5",
         "sensiolabs/security-checker": "^6.0",
         "sylius-labs/coding-standard": "^4.0",
-        "symfony/browser-kit": "^4.4 || ^5.2",
-        "symfony/debug-bundle": "^4.4 || ^5.2",
-        "symfony/dotenv": "^4.4 || ^5.2",
-        "symfony/intl": "^4.4 || ^5.2",
-        "symfony/web-profiler-bundle": "^4.4 || ^5.2",
+        "symfony/browser-kit": "^4.4 || ^5.2 || ^6.4",
+        "symfony/debug-bundle": "^4.4 || ^5.2 || ^6.4",
+        "symfony/dotenv": "^4.4 || ^5.2 || ^6.4",
+        "symfony/intl": "^4.4 || ^5.2 || ^6.4",
+        "symfony/web-profiler-bundle": "^4.4 || ^5.2 || ^6.4",
         "vimeo/psalm": "4.7.1",
         "polishsymfonycommunity/symfony-mocker-container": "^1.0"
     },
